@@ -1,8 +1,14 @@
-# Ejercicio de arquitectura
+# Mining Company — Data Platform Architecture
 
-Te acaban de contratar en una empresa de la industria minera como Data Engineer/Data Architect para delinear su arquitectura y sugerir qué herramientas deberían utilizar para ingestar la data, procesar la información, almacenarla en un datawarehouse, orquestar y realizar Dashboards que ayuden a la toma de decisiones basadas en datos.
+A design deliverable: a scalable, orchestrated data platform for a mining company,
+handling both batch and streaming data — ingestion, processing, storage, governance,
+and BI/ML — proposed as a **Lambda architecture on GCP**.
 
-Luego de realizar algunas reuniones con el team de analítica de la empresa pudimos relevar las siguientes fuentes de datos:
+**Stack:** GCP (Dataflow / Apache Beam · Pub/Sub · Cloud Storage · BigQuery · Composer / Airflow · Dataplex) · Terraform
+
+## Data sources
+
+Surveyed with the company's analytics team:
 
 - **Sistema ERP:** SAP con una base de datos Oracle.
 - **Sistema de Producción:** App desarrollada "in house" con una base de datos Postgres.
@@ -10,24 +16,12 @@ Luego de realizar algunas reuniones con el team de analítica de la empresa pudi
 - **Mediciones en tiempo real:** Utilizan +100 sensores de mediciones de vibración por toda la mina para detectar movimiento del suelo y se podrían utilizar para predecir posibles derrumbes.
 - **Apps Mobile:** La empresa cuenta con una app mobile donde trackean todos los issues pendientes con maquinaria de la mina.
 
-# Ejercicio de arquitectura
+## Design decisions
 
-Desarrollar una arquitectura, que sea escalable, robusta, que sea orquestada automáticamente, que contemple seguridad, calidad, linaje del dato, que sea utilizada para procesar tanto información batch como información en tiempo real.
+Key decisions below (cloud vs on-prem, ETL vs ELT, tooling, storage model, governance,
+IaC), answering the requirements of a scalable, robust, automatically orchestrated
+platform with security, quality and data lineage across batch and real-time data.
 
-Responder las siguientes preguntas:
-
-1. ¿Utilizarían infraestructura on premise o en la nube?
-2. ¿ETL o ELT? ¿Por qué?
-3. ¿Qué herramienta/s utilizarían para ETL/ELT?
-4. ¿Qué herramienta/s utilizarían para ingestar estos datos?
-5. ¿Qué herramienta/s utilizarían para almacenar estos datos?
-6. ¿Cómo guardarán la información, OLTP o OLAP?
-7. ¿Qué herramienta/s utilizarían para Data Governance?
-8. ¿Data Warehouse, Data Lake o Lake House?
-9. ¿Qué tipo de información gestionarán, estructurada, semi estructurada, no estructurada?
-10. ¿Con qué herramienta podrían desplegar toda la infraestructura de datos?
-
-# Resolución 
 
 **1. ¿Utilizarían infraestructura on premise o en la nube?**
 
